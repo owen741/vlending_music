@@ -281,7 +281,7 @@ export function ContactPage({ onNavigateToAboutFaq }: ContactPageProps) {
                     placeholder="010-1234-5678"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full h-14 text-base border-2 border-gray-200 focus:border-black transition-colors"
+                    className="w-full h-14 text-base border border-gray-200 focus:border-black transition-colors"
                     required
                   />
                 </div>
@@ -297,7 +297,7 @@ export function ContactPage({ onNavigateToAboutFaq }: ContactPageProps) {
                     placeholder="문의 제목을 입력해주세요"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full h-14 text-base border-2 border-gray-200 focus:border-black transition-colors"
+                    className="w-full h-14 text-base border border-gray-200 focus:border-black transition-colors"
                     required
                   />
                 </div>
