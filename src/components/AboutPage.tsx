@@ -4,6 +4,8 @@ import { Music, Globe, TrendingUp, Award, HelpCircle, ArrowLeft, ChevronRight } 
 import { useState, useRef, useEffect } from 'react';
 import { SectionTitle } from './SectionTitle';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
 
 interface FAQItem {
   question: string;
@@ -438,8 +440,30 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
 
           {/* FAQ Layout */}
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Left Side - Category Menu */}
-            <div className="lg:w-64 flex-shrink-0">
+            {/* Mobile: Category Dropdown */}
+            <div className="lg:hidden">
+              <Select
+                value={selectedCategory.toString()}
+                onValueChange={(value) => {
+                  setSelectedCategory(parseInt(value));
+                  setSelectedFaq(null);
+                }}
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="카테고리를 선택하세요" />
+                </SelectTrigger>
+                <SelectContent>
+                  {faqCategories.map((category, catIndex) => (
+                    <SelectItem key={catIndex} value={catIndex.toString()}>
+                      {category.category}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Desktop: Left Side - Category Menu */}
+            <div className="hidden lg:block lg:w-64 flex-shrink-0">
               <div className="lg:sticky lg:top-24">
                 <nav className="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0">
                   {faqCategories.map((category, catIndex) => (
@@ -465,8 +489,26 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
               </div>
             </div>
 
-            {/* Right Side - FAQ Items */}
-            <div className="flex-1 min-w-0">
+            {/* Mobile: Accordion FAQ Items */}
+            <div className="lg:hidden flex-1 min-w-0">
+              <Accordion type="single" collapsible className="w-full">
+                {faqCategories[selectedCategory].items.map((faq, faqIndex) => (
+                  <AccordionItem key={faqIndex} value={`item-${faqIndex}`}>
+                    <AccordionTrigger className="text-left py-6 hover:no-underline">
+                      <span className="font-medium text-gray-900">{faq.question}</span>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p className="text-gray-700 leading-relaxed whitespace-pre-line pt-2">
+                        {faq.answer}
+                      </p>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            {/* Desktop: Right Side - FAQ Items */}
+            <div className="hidden lg:block flex-1 min-w-0">
               {selectedFaq === null ? (
                 // FAQ List View
                 <motion.div
