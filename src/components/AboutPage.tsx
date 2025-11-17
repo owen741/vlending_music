@@ -211,9 +211,9 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero Section */}
-      <section className="pt-20">
+      <section className="pt-20 overflow-x-hidden">
         <div className="relative h-[30vh] md:h-[35vh] lg:h-[40vh] mb-12 md:mb-16">
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1669459881627-06c2a4948e33?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdXNpYyUyMGFydGlzdCUyMHBlcmZvcm1hbmNlfGVufDF8fHx8MTc2MjcwNjg3M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
@@ -221,7 +221,7 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-            <div className="text-center text-white px-4 text-[42px]">
+            <div className="text-center text-white px-4">
               <p className="max-w-2xl mx-auto text-xl md:text-2xl lg:text-4xl font-bold">
                 팬과 아티스트가 함께 성장하며,<br />
                 지속가능한 음악 생태계를 만들어갑니다.
@@ -232,7 +232,7 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
       </section>
 
       {/* Services Section */}
-      <section className="px-4 md:px-12 lg:px-16 pt-12 md:pt-16 lg:pt-20 pb-20 md:pb-24 lg:pb-32">
+      <section className="px-4 md:px-12 lg:px-16 pt-12 md:pt-16 lg:pt-20 pb-20 md:pb-24 lg:pb-32 overflow-x-hidden">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -272,7 +272,7 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
       </section>
 
       {/* Platform Partners */}
-      <section className="px-4 md:px-12 lg:px-16 py-20 md:py-24 lg:py-32 bg-white">
+      <section className="px-4 md:px-12 lg:px-16 py-20 md:py-24 lg:py-32 bg-white overflow-x-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 md:mb-16">
             <SectionTitle title="Music Platforms" />
@@ -309,9 +309,9 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
           }
         `}} />
         
-        <div className="relative space-y-8">
+        <div className="relative space-y-8 overflow-x-hidden">
           {/* First Row - Left to Right */}
-          <div className="flex gap-12 animate-scroll-left">
+          <div className="flex gap-6 md:gap-12 animate-scroll-left">
             {/* First set */}
             {allPlatforms.slice(0, Math.ceil(allPlatforms.length / 2)).map((platform, index) => (
               <a
@@ -319,7 +319,7 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
                 href={platform.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 aspect-[4/1] w-56 flex items-center justify-center px-8 py-4 hover:scale-105 transition-transform cursor-pointer"
+                className="flex-shrink-0 aspect-[4/1] w-40 md:w-56 flex items-center justify-center px-4 md:px-8 py-4 hover:scale-105 transition-transform cursor-pointer"
               >
                 {platform.logo ? (
                   <ImageWithFallback
@@ -344,7 +344,7 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
                 href={platform.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 aspect-[4/1] w-56 flex items-center justify-center px-8 py-4 hover:scale-105 transition-transform cursor-pointer"
+                className="flex-shrink-0 aspect-[4/1] w-40 md:w-56 flex items-center justify-center px-4 md:px-8 py-4 hover:scale-105 transition-transform cursor-pointer"
               >
                 {platform.logo ? (
                   <ImageWithFallback
@@ -365,7 +365,7 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
           </div>
 
           {/* Second Row - Right to Left */}
-          <div className="flex gap-12 animate-scroll-right">
+          <div className="flex gap-6 md:gap-12 animate-scroll-right">
             {/* First set */}
             {allPlatforms.slice(Math.ceil(allPlatforms.length / 2)).map((platform, index) => (
               <a
@@ -373,7 +373,7 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
                 href={platform.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 aspect-[4/1] w-56 flex items-center justify-center px-8 py-4 hover:scale-105 transition-transform cursor-pointer"
+                className="flex-shrink-0 aspect-[4/1] w-40 md:w-56 flex items-center justify-center px-4 md:px-8 py-4 hover:scale-105 transition-transform cursor-pointer"
               >
                 {platform.logo ? (
                   <ImageWithFallback
@@ -398,7 +398,7 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
                 href={platform.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-shrink-0 aspect-[4/1] w-56 flex items-center justify-center px-8 py-4 hover:scale-105 transition-transform cursor-pointer"
+                className="flex-shrink-0 aspect-[4/1] w-40 md:w-56 flex items-center justify-center px-4 md:px-8 py-4 hover:scale-105 transition-transform cursor-pointer"
               >
                 {platform.logo ? (
                   <ImageWithFallback
@@ -421,7 +421,7 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" ref={faqSectionRef} className="px-4 md:px-12 lg:px-16 py-20 md:py-24 lg:py-32 bg-white scroll-mt-20">
+      <section id="faq" ref={faqSectionRef} className="px-4 md:px-12 lg:px-16 py-20 md:py-24 lg:py-32 bg-white scroll-mt-20 overflow-x-hidden">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -480,7 +480,7 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
                     <motion.button
                       key={faqIndex}
                       onClick={() => setSelectedFaq(faqIndex)}
-                      className="w-full py-6 text-left group hover:bg-gray-50 transition-colors px-4 -mx-4"
+                      className="w-full py-6 text-left group hover:bg-gray-50 transition-colors px-4"
                     >
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex-1">
@@ -561,7 +561,7 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="px-4 md:px-12 lg:px-16 py-12 md:py-16 lg:py-20 bg-black text-white">
+      <section className="px-4 md:px-12 lg:px-16 py-12 md:py-16 lg:py-20 bg-black text-white overflow-x-hidden">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
