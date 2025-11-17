@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Navigation } from './components/Navigation';
-import { HomeNavigation } from './components/HomeNavigation';
 import { MagazineGrid } from './components/MagazineGrid';
-import { FullWidthStory } from './components/FullWidthStory';
 import { GridGallery } from './components/GridGallery';
 import { SpotlightGrid } from './components/SpotlightGrid';
 import { ProcessSection } from './components/ProcessSection';
@@ -33,51 +31,6 @@ export default function App() {
   const [currentView, setCurrentView] = useState<ViewType>({ type: 'home' });
   const [viewHistory, setViewHistory] = useState<ViewType[]>([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const heroSlides = [
-    {
-      id: '1',
-      title: 'MUSIC EVERYWHERE',
-      subtitle: '전 세계로 전달되는 당신의 음악',
-      image: 'https://images.unsplash.com/photo-1661261400335-7dc71eb2b5a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdXNpYyUyMHN0dWRpbyUyMHByb2R1Y2VyfGVufDF8fHx8MTc2MTY4Mjk4Nnww&ixlib=rb-4.1.0&q=80&w=1080',
-    },
-    {
-      id: '2',
-      title: 'LIVE THE MOMENT',
-      subtitle: '라이브 무대에서 완성되는 음악',
-      image: 'https://images.unsplash.com/photo-1709731191876-899e32264420?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb25jZXJ0JTIwc3RhZ2UlMjBsaWdodHN8ZW58MXx8fHwxNzYxNjQ2NDQzfDA&ixlib=rb-4.1.0&q=80&w=1080',
-    },
-    {
-      id: '3',
-      title: 'TIMELESS SOUND',
-      subtitle: '아날로그의 감성, 디지털의 편리함',
-      image: 'https://images.unsplash.com/photo-1603850121303-d4ade9e5ba65?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2aW55bCUyMHJlY29yZCUyMHBsYXllcnxlbnwxfHx8fDE3NjE2Nzk0MDR8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    },
-  ];
-
-  const stories = [
-    {
-      id: '1',
-      category: 'DISTRIBUTION',
-      title: '뮤지션의 꿈을 현실로',
-      description: '당신의 음악을 Spotify, Apple Music, YouTube Music 등 전 세계 주요 스트리밍 플랫폼에 배포합니다. 복잡한 절차 없이 간편하게 음원을 등록하고, 실시간으로 성과를 확인하세요. 우리는 당신이 음악에만 집중할 수 있도록 모든 유통 과정을 간소화했습니다.',
-      image: 'https://images.unsplash.com/photo-1642171588180-d61117af47ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdXNpY2lhbiUyMHJlY29yZGluZ3xlbnwxfHx8fDE3NjE3MTE5MzB8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    },
-    {
-      id: '2',
-      category: 'ANALYTICS',
-      title: '투명한 정산 시스템',
-      description: '실시간 대시보드를 통해 스트리밍 수, 수익, 리스너 통계를 확인할 수 있습니다. 모든 정산 내역은 투명하게 공개되며, 매월 정기적으로 정산됩니다. 당신의 음악이 어디서, 얼마나 들리고 있는지 한눈에 파악하세요.',
-      image: 'https://images.unsplash.com/photo-1607270636108-52e65b5878b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFkcGhvbmVzJTIwbXVzaWMlMjBsaXN0ZW5pbmd8ZW58MXx8fHwxNzYxNzA5MzE1fDA&ixlib=rb-4.1.0&q=80&w=1080',
-      reverse: true,
-    },
-    {
-      id: '3',
-      category: 'SUPPORT',
-      title: '글로벌 플랫폼 연결',
-      description: '200개 이상의 국가와 지역에서 당신의 음악을 들을 수 있습니다. 우리는 지속적으로 새로운 플랫폼과 파트너십을 확대하여 아티스트의 리치를 넓힙니다. 한국을 넘어 전 세계 리스너와 만나보세요.',
-      image: 'https://images.unsplash.com/photo-1561264819-1ccc1c6e0ae9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdXNpYyUyMHBlcmZvcm1hbmNlJTIwbGl2ZXxlbnwxfHx8fDE3NjE3MDg1NzF8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    },
-  ];
 
   const albumItems = [
     { 
@@ -481,7 +434,7 @@ export default function App() {
 
   // Navigate to a new view and save current view to history
   const navigateTo = (newView: ViewType) => {
-    setViewHistory(prev => [...prev, currentView]);
+    setViewHistory((prev: ViewType[]) => [...prev, currentView]);
     setCurrentView(newView);
     window.scrollTo(0, 0);
   };
@@ -490,7 +443,7 @@ export default function App() {
   const goBack = () => {
     if (viewHistory.length > 0) {
       const previousView = viewHistory[viewHistory.length - 1];
-      setViewHistory(prev => prev.slice(0, -1));
+      setViewHistory((prev: ViewType[]) => prev.slice(0, -1));
       setCurrentView(previousView);
       window.scrollTo(0, 0);
     } else {
