@@ -449,12 +449,12 @@ export function AboutPage({ scrollToFaq = false }: AboutPageProps) {
                   setSelectedFaq(null);
                 }}
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full h-14 text-base border border-gray-200 focus:border-black transition-colors px-3">
                   <SelectValue placeholder="카테고리를 선택하세요" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent position="popper" sideOffset={4} className="will-change-transform">
                   {faqCategories.map((category, catIndex) => (
-                    <SelectItem key={catIndex} value={catIndex.toString()}>
+                    <SelectItem key={catIndex} value={catIndex.toString()} className="text-base">
                       {category.category}
                     </SelectItem>
                   ))}

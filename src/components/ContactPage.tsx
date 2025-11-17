@@ -224,7 +224,7 @@ export function ContactPage({ onNavigateToAboutFaq }: ContactPageProps) {
                     onValueChange={(value) => setFormData({ ...formData, category: value })}
                     required
                   >
-                    <SelectTrigger className="w-full h-14 text-base border-2 border-gray-200 focus:border-black transition-colors px-3">
+                    <SelectTrigger className="w-full h-14 text-base border border-gray-200 focus:border-black transition-colors px-3">
                       <SelectValue placeholder="문의 유형을 선택해주세요" />
                     </SelectTrigger>
                     <SelectContent position="popper" sideOffset={4} className="will-change-transform">
@@ -249,7 +249,7 @@ export function ContactPage({ onNavigateToAboutFaq }: ContactPageProps) {
                       placeholder="홍길동"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full h-14 text-base border-2 border-gray-200 focus:border-black transition-colors"
+                      className="w-full h-14 text-base border border-gray-200 focus:border-black transition-colors"
                       required
                     />
                   </div>
@@ -264,7 +264,7 @@ export function ContactPage({ onNavigateToAboutFaq }: ContactPageProps) {
                       placeholder="example@email.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full h-14 text-base border-2 border-gray-200 focus:border-black transition-colors"
+                      className="w-full h-14 text-base border border-gray-200 focus:border-black transition-colors"
                       required
                     />
                   </div>
@@ -312,7 +312,7 @@ export function ContactPage({ onNavigateToAboutFaq }: ContactPageProps) {
                     placeholder="문의하실 내용을 자세히 작성해주세요"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full min-h-[200px] resize-none text-base border-2 border-gray-200 focus:border-black transition-colors"
+                    className="w-full min-h-[200px] resize-none text-base border border-gray-200 focus:border-black transition-colors"
                     required
                   />
                 </div>
