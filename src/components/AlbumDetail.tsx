@@ -273,51 +273,12 @@ export function AlbumDetail({ album, onBack, previousPageName = 'Released' }: Al
                 className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-all"
                 onClick={() => setIsPlatformDialogOpen(false)}
               >
-                {platform.name === 'Melon' ? (
-                  <img 
-                    src={platform.logo} 
-                    alt="Melon" 
-                    className="w-8 h-8 object-contain"
-                    style={{ borderRadius: '20%' }}
-                  />
-                ) : platform.name === 'Genie' ? (
-                  <img 
-                    src={platform.logo} 
-                    alt="Genie" 
-                    className="w-8 h-8 object-contain"
-                    style={{ borderRadius: '20%' }}
-                  />
-                ) : platform.name === 'Bugs' ? (
-                  <img 
-                    src={platform.logo} 
-                    alt="Bugs" 
-                    className="w-8 h-8 object-contain"
-                    style={{ borderRadius: '20%' }}
-                  />
-                ) : platform.name === 'Vibe' ? (
-                  <img 
-                    src={platform.logo} 
-                    alt="Vibe" 
-                    className="w-8 h-8 object-contain"
-                    style={{ borderRadius: '20%' }}
-                  />
-                ) : platform.name === 'YouTube Music' ? (
-                  <img 
-                    src={platform.logo} 
-                    alt="YouTube Music" 
-                    className="w-8 h-8 object-contain"
-                    style={{ borderRadius: '20%' }}
-                  />
-                ) : platform.name === 'FLO' ? (
-                  <img 
-                    src={platform.logo} 
-                    alt="FLO" 
-                    className="w-8 h-8 object-contain"
-                    style={{ borderRadius: '20%' }}
-                  />
-                ) : (
-                  <span className="text-2xl">{platform.logo}</span>
-                )}
+                <ImageWithFallback
+                  src={platform.logo}
+                  alt={platform.name}
+                  className="w-8 h-8 object-contain flex-shrink-0"
+                  style={{ borderRadius: '20%' }}
+                />
                 <span className="font-medium">{platform.name}</span>
               </a>
             ))}
@@ -328,7 +289,7 @@ export function AlbumDetail({ album, onBack, previousPageName = 'Released' }: Al
       {/* 유튜브 팝업 */}
       {hasYoutubeContent && (
         <Dialog open={isYoutubeDialogOpen} onOpenChange={setIsYoutubeDialogOpen}>
-          <DialogContent className="sm:max-w-4xl max-h-[90vh]">
+          <DialogContent className="sm:max-w-4xl max-h-[90vh] flex flex-col">
             <DialogHeader>
               <DialogTitle>
                 {selectedVideo ? selectedVideo.title : `${album.title} - YouTube`}
@@ -340,35 +301,37 @@ export function AlbumDetail({ album, onBack, previousPageName = 'Released' }: Al
             
             {/* 비디오 목록 표시 (비디오가 여러개이고 목록 모드일 때) */}
             {showVideoList && youtubeVideos.length > 1 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
-                {youtubeVideos.map((video) => (
-                  <button
-                    key={video.id}
-                    onClick={() => handleVideoSelect(video)}
-                    className="group relative overflow-hidden rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-                  >
-                    <div className="aspect-video w-full relative overflow-hidden">
-                      <img
-                        src={video.thumbnail}
-                        alt={video.title}
-                        className="w-full h-full object-cover transition-transform duration-300"
-                        onError={(e) => {
-                          // 썸네일 로드 실패 시 대체 이미지
-                          (e.target as HTMLImageElement).src = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
-                        }}
-                      />
-                      {/* 재생 버튼 오버레이 */}
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
-                        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
-                          <div className="w-0 h-0 border-l-[16px] border-l-black border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent ml-1"></div>
+              <div className="overflow-y-auto flex-1 min-h-0 py-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {youtubeVideos.map((video) => (
+                    <button
+                      key={video.id}
+                      onClick={() => handleVideoSelect(video)}
+                      className="group relative overflow-hidden rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                    >
+                      <div className="aspect-video w-full relative overflow-hidden">
+                        <img
+                          src={video.thumbnail}
+                          alt={video.title}
+                          className="w-full h-full object-cover transition-transform duration-300"
+                          onError={(e) => {
+                            // 썸네일 로드 실패 시 대체 이미지
+                            (e.target as HTMLImageElement).src = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
+                          }}
+                        />
+                        {/* 재생 버튼 오버레이 */}
+                        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
+                            <div className="w-0 h-0 border-l-[16px] border-l-black border-t-[10px] border-t-transparent border-b-[10px] border-b-transparent ml-1"></div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="p-3 bg-gray-50 group-hover:bg-gray-100 transition-colors">
-                      <p className="text-sm text-left line-clamp-2">{video.title}</p>
-                    </div>
-                  </button>
-                ))}
+                      <div className="p-3 bg-gray-50 group-hover:bg-gray-100 transition-colors">
+                        <p className="text-sm text-left line-clamp-2">{video.title}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
             
