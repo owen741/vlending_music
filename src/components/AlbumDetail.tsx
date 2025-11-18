@@ -290,14 +290,27 @@ export function AlbumDetail({ album, onBack, previousPageName = 'Released' }: Al
       {hasYoutubeContent && (
         <Dialog open={isYoutubeDialogOpen} onOpenChange={setIsYoutubeDialogOpen}>
           <DialogContent className="sm:max-w-4xl max-h-[90vh] flex flex-col">
-            <DialogHeader>
-              <DialogTitle>
-                {selectedVideo ? selectedVideo.title : `${album.title} - YouTube`}
-              </DialogTitle>
-              <DialogDescription>
-                {album.artist}
-              </DialogDescription>
-            </DialogHeader>
+            <div className="flex flex-col gap-4 pr-10">
+              {/* 뒤로가기 버튼 (비디오가 여러개이고 재생 모드일 때만) */}
+              {!showVideoList && selectedVideo && youtubeVideos.length > 1 && (
+                <button
+                  onClick={handleBackToList}
+                  className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors self-start"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  <span>목록으로 돌아가기</span>
+                </button>
+              )}
+              
+              <DialogHeader className="text-left">
+                <DialogTitle>
+                  {selectedVideo ? selectedVideo.title : `${album.title} - YouTube`}
+                </DialogTitle>
+                <DialogDescription>
+                  {album.artist}
+                </DialogDescription>
+              </DialogHeader>
+            </div>
             
             {/* 비디오 목록 표시 (비디오가 여러개이고 목록 모드일 때) */}
             {showVideoList && youtubeVideos.length > 1 && (
@@ -338,17 +351,6 @@ export function AlbumDetail({ album, onBack, previousPageName = 'Released' }: Al
             {/* 비디오 재생 (비디오가 선택되었거나 1개일 때) */}
             {!showVideoList && selectedVideo && (
               <div className="space-y-4">
-                {/* 뒤로가기 버튼 (비디오가 여러개일 때만) */}
-                {youtubeVideos.length > 1 && (
-                  <button
-                    onClick={handleBackToList}
-                    className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                  >
-                    <ArrowLeft className="w-4 h-4" />
-                    <span>목록으로 돌아가기</span>
-                  </button>
-                )}
-                
                 <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                   <iframe
                     className="absolute top-0 left-0 w-full h-full rounded-lg"
