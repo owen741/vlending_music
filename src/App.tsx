@@ -38,7 +38,7 @@ export default function App() {
       title: '"RISE and ROCK"', 
       subtitle: 'GUILTY GEAR -STRIVE-',
       artist: 'SELECTION ALBUM',
-      image: undefined, // 임시 플레이스홀더: 피그마에서 이미지 파일을 내보내서 추가 필요
+      image: 'figma:asset/e9ed646b50580335279cf7eb2aa6c834cbc0f7b4.png',
       description: 'GUILTY GEAR -STRIVE-의 공식 선정 앨범 "RISE and ROCK"은 게임의 강렬한 록 사운드를 완벽하게 담아낸 컬렉션입니다. 격투 게임의 역동성과 록 음악의 에너지가 만나 탄생한 이 앨범은 플레이어들에게 몰입감 넘치는 사운드 경험을 선사합니다. 각 트랙은 캐릭터의 개성과 스토리를 음악으로 표현하며, 게임의 흥분을 그대로 전달합니다.',
       youtubeUrl: 'https://www.youtube.com/embed/6QiYJPQuBh8'
     },
